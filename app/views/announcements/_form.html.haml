@@ -1,0 +1,26 @@
+= simple_form_for @announcement do |f|
+  - if @announcement.errors.any?
+    #error_explanation.alert.alert-danger
+      .d-flex.align-items-center
+        .bg-danger.me-3.icon-item
+          %span.mso{style: 'color: white;font-size: 36px'}
+            error
+        %p.mb-0.flex-1= "#{pluralize(@announcement.errors.count, "error")} prohibited this announcement from being saved:"
+      %ul
+        - @announcement.errors.full_messages.each do |message|
+          %li= message
+  .form-inputs
+    .row
+      .col-12
+        = f.input :title
+      .col-12
+        = f.input :detail, as: :text
+      .col-12
+        = f.input :file, as: :file
+      .col-12
+        = f.input :available, as: :boolean
+  .row
+    .col-md
+    .col-auto.action
+      = f.submit 'Save', class: 'btn btn-falcon-primary'
+      %a.button.btn.btn-falcon-default{href: announcements_path} Back

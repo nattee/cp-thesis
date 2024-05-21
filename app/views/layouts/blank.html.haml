@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    = render 'layouts/header'
+  %body
+    %main.main
+      .container-fluid{data: {layout: 'container-fluid'}}
+        .content.p-0
+          = yield

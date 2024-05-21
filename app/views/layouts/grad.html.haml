@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    = render 'layouts/header_grad'
+  %body
+    %main.main
+      .container{data: {layout: :container}}
+        -# navbar
+        %nav.navbar.navbar-vertical.navbar-expand-xl.navbar-light
+          -# icon
+          = render 'layouts/logo'
+          -# menu
+          = render 'layouts/navigation_grad'
+        .content
+          = render 'layouts/top_bar_grad'
+          = yield
+          = render 'layouts/footer'

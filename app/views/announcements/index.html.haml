@@ -1,0 +1,36 @@
+.card
+  .card-header.bg-body-tertiary
+    %h5 Announcements
+  .card-body
+    = render 'shared/flash'
+    %table#main_table.table.table-hover{style: 'width: 100%'}
+      %thead
+        %tr.bg-200
+          %th Title
+          %th Detail
+          %th Available
+          %th
+
+      %tbody
+        - @announcements.each do |announcement|
+          %tr
+            %td= announcement.title
+            %td= announcement.detail
+            %td= badge_display announcement.available.to_s
+            %td= link_to 'Edit', edit_announcement_path(announcement)
+
+    %br
+
+    = link_to 'New announcement', new_announcement_path, class: 'btn btn-falcon-success'
+:javascript
+  window.addEventListener('DOMContentLoaded',function () {
+    $("#main_table").DataTable({
+      paging: false,
+      layout: {
+        topStart: 'info',
+        topEnd: 'search',
+        bottomStart: null,
+        bottomEnd: null,
+      },
+    });
+  } );

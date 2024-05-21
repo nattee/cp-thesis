@@ -1,0 +1,35 @@
+.card
+  .card-header.bg-body-tertiary
+    %h5 <%= human_name.pluralize %>
+  .card-body
+    %table#main_table.table.table-hover{style: 'width: 100%'}
+      %thead
+        %tr.bg-200
+        <%- attributes.each do |attribute| -%>
+          %th <%= attribute.name %>
+        <%- end -%>
+          %th
+
+      %tbody
+        - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+          %tr
+          <%- attributes.each do |attribute| -%>
+            %td= <%= singular_table_name %>.<%= attribute.name %>
+          <%- end -%>
+            %td= link_to 'Edit', <%= edit_helper(singular_table_name, type: :path) %>
+
+    %br
+
+    = link_to 'New <%=singular_table_name%>', <%= new_helper(type: :path)%>, class: 'btn btn-falcon-success'
+:javascript
+  window.addEventListener('DOMContentLoaded',function () {
+    $("#main_table").DataTable({
+      paging: false,
+      layout: {
+        topStart: 'info',
+        topEnd: 'search',
+        bottomStart: null,
+        bottomEnd: null,
+      },
+    });
+  } );

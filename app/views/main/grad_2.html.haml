@@ -1,0 +1,14 @@
+.card
+  .card-header.bg-body-tertiary
+    %h5 สร้างการนัดสอบโครงร่าง
+  .card-body
+    = simple_form_for @user do |f|
+      = f.input :login, label: 'ชื่อนิสิต'
+      = f.input :login, label: 'หลักสูตร'
+      = f.input :login, label: 'อาจารย์ที่ปรึกษา'
+      = f.input :login, label: 'กรรมการสอบ 1'
+      = f.input :login, label: 'กรรมการสอบ 2'
+      = f.input :login, label: 'กรรมการสอบ 3'
+      = f.input :login, label: 'ไฟล์โครงร่างวิทยานิพนธํ์', as: :file
+
+    

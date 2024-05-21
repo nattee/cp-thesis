@@ -1,0 +1,65 @@
+.row.min-vh-100.bg-100
+  .col-6.d-none.d-lg-block.position-relative
+    .bg-holder{:style => "background-image:url(/tmp.jpg);background-position: 50% 20%;"}
+    %p{style: 'padding-top: 10%'}
+    - @announcements.each do |ann|
+      .card.m-5
+        .card-body
+          %h5= ann.title
+        .card-body.bg-body-tertiary
+          = ann.detail
+    / /.bg-holder
+  .col-sm-10.col-md-6.px-sm-0.align-self-center.mx-auto.py-5
+    .row.justify-content-center.g-0
+      .col-lg-9.col-xl-8.col-xxl-6
+        .card
+          .card-header.bg-circle-shape.bg-shape.text-center.p-2
+            %a.font-sans-serif.fw-bolder.fs-5.z-1.position-relative.link-light{"data-bs-theme" => "light", href: root_path} Natural Gas Demand Supply
+          .card-body.p-4
+            = render 'shared/flash'
+            .row.flex-between-center
+              .col-auto
+                %h3 Login
+              .col-auto.fs-10.text-600
+                -#
+                  %span.mb-0.fw-semi-bold New User?
+                  %span
+                    %a{:href => "../../../pages/authentication/split/register.html"} Create account
+            = form_with url: main_login_path do |f|
+              .mb-3
+                %label.form-label{:for => "split-login-email"} Login
+                %input#split-login-email.form-control{type: "login", name: 'login'}
+              .mb-3
+                .d-flex.justify-content-between
+                  %label.form-label{:for => "split-login-password"} Password
+                %input#split-login-password.form-control{type: "password", name: 'password'}
+              .row.flex-between-center
+                .col-auto
+                  .form-check.mb-0
+                    %input#split-checkbox.form-check-input{:type => "checkbox"}/
+                    %label.form-check-label.mb-0{:for => "split-checkbox"} Remember me
+                .col-auto
+                  %a.fs-10{:href => "../../../pages/authentication/split/forgot-password.html"} Forgot Password?
+              .mb-3
+                %button.btn.btn-primary.d-block.w-100.mt-3{:name => "submit", :type => "submit"} Log in
+            .position-relative.mt-4
+              %hr/
+          -#
+              .divider-content-center or log in with
+            .row.g-2.mt-2
+              .col-sm-6
+                %a.btn.btn-outline-google-plus.btn-sm.d-block.w-100{:href => "#"}
+                  %svg.svg-inline--fa.fa-google-plus-g.fa-w-20.me-2{"aria-hidden" => "true", "data-fa-i2svg" => "", "data-fa-transform" => "grow-8", "data-icon" => "google-plus-g", "data-prefix" => "fab", :focusable => "false", :role => "img", :style => "transform-origin: 0.625em 0.5em;", :viewbox => "0 0 640 512", :xmlns => "http://www.w3.org/2000/svg"}
+                    %g{:transform => "translate(320 256)"}
+                      %g{:transform => "translate(0, 0)  scale(1.5, 1.5)  rotate(0 0 0)"}
+                        %path{:d => "M386.061 228.496c1.834 9.692 3.143 19.384 3.143 31.956C389.204 370.205 315.599 448 204.8 448c-106.084 0-192-85.915-192-192s85.916-192 192-192c51.864 0 95.083 18.859 128.611 50.292l-52.126 50.03c-14.145-13.621-39.028-29.599-76.485-29.599-65.484 0-118.92 54.221-118.92 121.277 0 67.056 53.436 121.277 118.92 121.277 75.961 0 104.513-54.745 108.965-82.773H204.8v-66.009h181.261zm185.406 6.437V179.2h-56.001v55.733h-55.733v56.001h55.733v55.733h56.001v-55.733H627.2v-56.001h-55.733z", :fill => "currentColor", :transform => "translate(-320 -256)"}
+                  / <span class="fab fa-google-plus-g me-2" data-fa-transform="grow-8"></span> Font Awesome fontawesome.com
+                  google
+              .col-sm-6
+                %a.btn.btn-outline-facebook.btn-sm.d-block.w-100{:href => "#"}
+                  %svg.svg-inline--fa.fa-facebook-square.fa-w-14.me-2{"aria-hidden" => "true", "data-fa-i2svg" => "", "data-fa-transform" => "grow-8", "data-icon" => "facebook-square", "data-prefix" => "fab", :focusable => "false", :role => "img", :style => "transform-origin: 0.4375em 0.5em;", :viewbox => "0 0 448 512", :xmlns => "http://www.w3.org/2000/svg"}
+                    %g{:transform => "translate(224 256)"}
+                      %g{:transform => "translate(0, 0)  scale(1.5, 1.5)  rotate(0 0 0)"}
+                        %path{:d => "M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z", :fill => "currentColor", :transform => "translate(-224 -256)"}
+                  / <span class="fab fa-facebook-square me-2" data-fa-transform="grow-8"></span> Font Awesome fontawesome.com
+                  facebook

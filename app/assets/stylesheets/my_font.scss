@@ -1,0 +1,51 @@
+//font are places at assets/fonts and font-url hepler (provided by sass-rails) will map correctly to it
+
+
+// material symbol
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  src: font-url('material_symbols/MaterialSymbolsOutlined.woff2') format('woff');
+}
+
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  src: font-url('material_symbols/MaterialSymbolsRounded.woff2') format('woff');
+}
+
+@font-face {
+  font-family: 'Material Symbols Sharp';
+  font-style: normal;
+  src: font-url('material_symbols/MaterialSymbolsSharp.woff2') format('woff');
+}
+
+.mso {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.number-font {
+  font-family: "Sarabun", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.mso.nav-link-icon {
+  font-size: 24px !important;
+}

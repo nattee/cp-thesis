@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  equation: one
+  variable: one
+  timestep: 1
+  value: 1.5
+
+two:
+  equation: two
+  variable: two
+  timestep: 1
+  value: 1.5

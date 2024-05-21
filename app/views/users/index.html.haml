@@ -1,0 +1,35 @@
+.card
+  .card-header.bg-body-tertiary
+    %h5 Users List
+  .card-body
+    %table#main_table.table.table-hover{style: 'width: 100%'}
+      %thead
+        %tr.bg-200
+          %th Login
+          %th Name
+          %th Role
+          %th
+
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.login
+            %td= user.name
+            %td= user.role
+            %td= link_to 'Edit', edit_user_path(user)
+
+    %br
+
+    = link_to 'New User', new_user_path, class: 'btn btn-falcon-success'
+:javascript
+  window.addEventListener('DOMContentLoaded',function () {
+    $("#main_table").DataTable({
+      paging: false,
+      layout: {
+        topStart: 'info',
+        topEnd: 'search',
+        bottomStart: null,
+        bottomEnd: null,
+      },
+    });
+  } );

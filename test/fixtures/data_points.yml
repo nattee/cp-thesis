@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  variable: one
+  resolution: 1
+  date: 2024-04-28
+  value_predict: 1.5
+  value_actual: 1.5
+  source: 1
+  import: one
+  equation: one
+
+two:
+  variable: two
+  resolution: 1
+  date: 2024-04-28
+  value_predict: 1.5
+  value_actual: 1.5
+  source: 1
+  import: two
+  equation: two

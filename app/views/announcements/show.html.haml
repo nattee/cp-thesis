@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @announcement.title
+%p
+  %b Detail:
+  = @announcement.detail
+%p
+  %b Available:
+  = @announcement.available
+
+= link_to 'Edit', edit_announcement_path(@announcement)
+\|
+= link_to 'Back', announcements_path

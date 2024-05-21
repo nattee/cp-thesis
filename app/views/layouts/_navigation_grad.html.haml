@@ -1,0 +1,50 @@
+.navbar-collapse.collapse
+  .navbar-vertical-content.scrollbar
+    %ul.navbar-nav.flex-column.mb-3
+      -# category
+      %li.nav-item
+        -# label
+        .row.navbar-vertical-label-wrapper.mt-3.mb-2
+          .col-auto.navbar-vertical-label Main
+          .col.ps-0
+            %hr.navbar-vertical-divider.mb-0
+        -# item
+        %a.nav-link{href: main_report_path}
+          .d-flex.align-items-center
+            %span.nav-link-icon.mso
+              query_stats
+            %span.nav-link-text.ps-1 ผลการสอบ
+        %a.nav-link{href: variables_path}
+          .d-flex.align-items-center
+            %span.nav-link-icon.mso
+              format_list_numbered
+            %span.nav-link-text.ps-1 นัดสอบ
+        %a.nav-link{href: equations_path}
+          .d-flex.align-items-center
+            %span.nav-link-icon.mso
+              function
+            %span.nav-link-text.ps-1 บันทึกผล
+        %a.nav-link{href: imports_path}
+          .d-flex.align-items-center
+            %span.nav-link-icon.mso
+              description
+            %span.nav-link-text.ps-1 คู่มือการใช้งาน
+      -# category manage
+      %li.nav-item
+        -# label
+        .row.navbar-vertical-label-wrapper.mt-3.mb-2
+          .col-auto.navbar-vertical-label จัดการข้อมูล
+          .col.ps-0
+            %hr.navbar-vertical-divider.mb-0
+        -# item
+        %a.nav-link{href: announcements_path}
+          .d-flex.align-items-center
+            %span.nav-link-icon.mso
+              campaign
+            %span.nav-link-text.ps-1 ประกาศ
+        %a.nav-link{href: users_path}
+          .d-flex.align-items-center
+            %span.nav-link-icon.mso
+              person
+            %span.nav-link-text.ps-1 ผู้ใช้งาน
+

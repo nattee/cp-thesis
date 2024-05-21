@@ -1,0 +1,23 @@
+= simple_form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation.alert.alert-danger
+      .d-flex.align-items-center
+        .bg-danger.me-3.icon-item
+          %span.mso{style: 'color: white;font-size: 36px'}
+            error
+        %p.mb-0.flex-1= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+  .row
+    .col-12
+      = f.input :login
+    .col-sm-6
+      = f.input :password
+    .col-sm-6
+      = f.input :password_confirmation
+  .row
+    .col-md
+    .col-auto.action
+      = f.submit 'Save', class: 'btn btn-falcon-primary'
+      %a.button.btn.btn-falcon-default{href: users_path} Back
