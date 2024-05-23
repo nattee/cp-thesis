@@ -17,11 +17,21 @@ class MainController < ApplicationController
     redirect_to main_report_path, notice: 'Login successfull'
   end
 
+
+  #
+  # series of homes
+  def student
+
+  end
+
+
   def home
     if current_user
-      redirect_to main_report_path
+      redirect_to main_student_path if current_user.role_student?
+      redirect_to main_admin_path if current_user.role_admin?
+      redirect_to main_lecturer_path if current_user.role_lecturer?
     else
-      redirect_to main_login_path
+      redirect_to login_main_path
     end
   end
 

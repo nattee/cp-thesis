@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Cuid:
+  = @student.cuid
+%p
+  %b Name:
+  = @student.name
+%p
+  %b Program:
+  = @student.program
+
+= link_to 'Edit', edit_student_path(@student)
+\|
+= link_to 'Back', students_path

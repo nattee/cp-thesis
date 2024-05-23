@@ -1,0 +1,24 @@
+= simple_form_for @student do |f|
+  - if @student.errors.any?
+    #error_explanation.alert.alert-danger
+      .d-flex.align-items-center
+        .bg-danger.me-3.icon-item
+          %span.mso{style: 'color: white;font-size: 36px'}
+            error
+        %p.mb-0.flex-1= "#{pluralize(@student.errors.count, "error")} prohibited this student from being saved:"
+      %ul
+        - @student.errors.full_messages.each do |message|
+          %li= message
+  .form-inputs
+    .row
+      .col-12
+        = f.input :cuid
+      .col-12
+        = f.input :name
+      .col-12
+        = f.input :program
+  .row
+    .col-md
+    .col-auto.action
+      = f.submit 'Save', class: 'btn btn-falcon-primary'
+      %a.button.btn.btn-falcon-default{href: students_path} Back

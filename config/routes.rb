@@ -1,23 +1,15 @@
 Rails.application.routes.draw do
+  resources :students
   resources :announcements
   resources :data_points do
     get :forecast, on: :member
-
   end
-
-  resources :coefficients
-  resources :equations
 
   resources :imports do
     member do
       get :confirm
       post ':confirm', action: 'do_confirm'
     end
-  end
-
-  resources :variables do
-    get :values, on: :member
-    get :add_value, on: :member
   end
 
   resources :users
@@ -31,12 +23,18 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'main/login'
-  post 'main/login', to: 'main#do_login'
-  get 'main/logout'
-  get 'main/home'
-  get 'main/grad_1'
-  get 'main/grad_2'
+  namespace :main do
+    get 'login'
+    post 'login', action: 'do_login'
+    get 'logout'
+
+    #home
+    get 'home'
+    get 'student'
+    get 'admin'
+    get 'lecturer'
+  end
+
   root 'main#home'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

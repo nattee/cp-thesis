@@ -3,5 +3,5 @@ class User < ApplicationRecord
 
   validates :login, presence: true
 
-  enum role: {default: 0, admin: 1}
+  enum role: {student: 0, admin: 1, lecturer: 2}, _prefix: :role
 end

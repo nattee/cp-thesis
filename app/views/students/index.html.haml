@@ -1,0 +1,35 @@
+.card
+  .card-header.bg-body-tertiary
+    %h5 Students
+  .card-body
+    %table#main_table.table.table-hover{style: 'width: 100%'}
+      %thead
+        %tr.bg-200
+          %th cuid
+          %th name
+          %th program
+          %th
+
+      %tbody
+        - @students.each do |student|
+          %tr
+            %td= student.cuid
+            %td= student.name
+            %td= student.program
+            %td= link_to 'Edit', edit_student_path(student)
+
+    %br
+
+    = link_to 'New student', new_student_path, class: 'btn btn-falcon-success'
+:javascript
+  window.addEventListener('DOMContentLoaded',function () {
+    $("#main_table").DataTable({
+      paging: false,
+      layout: {
+        topStart: 'info',
+        topEnd: 'search',
+        bottomStart: null,
+        bottomEnd: null,
+      },
+    });
+  } );
