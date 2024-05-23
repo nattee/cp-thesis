@@ -54,6 +54,7 @@ gem "simple_form"
 gem "roo"
 gem 'active_storage_validations'
 gem "csv"
+gem "docx"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

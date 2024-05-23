@@ -14,7 +14,8 @@ class MainController < ApplicationController
 
     session[:user_id] = user.id
 
-    redirect_to main_report_path, notice: 'Login successfull'
+    home
+
   end
 
 
@@ -24,14 +25,21 @@ class MainController < ApplicationController
 
   end
 
+  def staff
+
+  end
+
+  def faculty
+  end
+
 
   def home
     if current_user
       redirect_to main_student_path if current_user.role_student?
-      redirect_to main_admin_path if current_user.role_admin?
-      redirect_to main_lecturer_path if current_user.role_lecturer?
+      redirect_to main_staff_path if current_user.role_staff?
+      redirect_to main_faculty_path if current_user.role_faculty?
     else
-      redirect_to login_main_path
+      redirect_to main_login_path
     end
   end
 
@@ -39,5 +47,6 @@ class MainController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path
   end
+
 
 end

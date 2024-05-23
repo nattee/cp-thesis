@@ -5,19 +5,19 @@
     %table#main_table.table.table-hover{style: 'width: 100%'}
       %thead
         %tr.bg-200
-          %th student_id
-          %th name_th
-          %th name_en
-          %th advisor
+          %th นิสิต
+          %th ชื่อวิทยานิพนธ์ (ไทย)
+          %th ชื่อวิทยานิพนธ์ (อังกฤษ)
+          %th อาจารย์ที่ปรึกษา
           %th
 
       %tbody
         - @proposals.each do |proposal|
           %tr
-            %td= proposal.student_id
+            %td= proposal.student.name
             %td= proposal.name_th
             %td= proposal.name_en
-            %td= proposal.advisor
+            %td= proposal.advisor.name
             %td= link_to 'Edit', edit_proposal_path(proposal)
 
     %br

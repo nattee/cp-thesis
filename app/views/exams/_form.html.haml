@@ -1,0 +1,34 @@
+= simple_form_for @exam do |f|
+  - if @exam.errors.any?
+    #error_explanation.alert.alert-danger
+      .d-flex.align-items-center
+        .bg-danger.me-3.icon-item
+          %span.mso{style: 'color: white;font-size: 36px'}
+            error
+        %p.mb-0.flex-1= "#{pluralize(@exam.errors.count, "error")} prohibited this exam from being saved:"
+      %ul
+        - @exam.errors.full_messages.each do |message|
+          %li= message
+  .form-inputs
+    .row
+      .col-12
+        = f.association :proposal
+      .col-12
+        = f.input :exam_date
+      .col-12
+        = f.input :place, label: 'สถานที่'
+      .col-12
+        = f.input :chair, label: 'ประธานกรรมการ' , collection: Faculty.pluck( :name )
+      .col-12
+        = f.input :com1, label: 'กรรมการ' , collection: Faculty.pluck( :name )
+      .col-12
+        = f.input :com2, label: 'กรรมการ' , collection: Faculty.pluck( :name )
+      .col-12
+        = f.input :com3, label: 'กรรมการ' , collection: Faculty.pluck( :name )
+      .col-12
+        = f.input :ex_com, label: 'กรรมการภายนอก'
+  .row
+    .col-md
+    .col-auto.action
+      = f.submit 'Save', class: 'btn btn-falcon-primary'
+      %a.button.btn.btn-falcon-default{href: exams_path} Back

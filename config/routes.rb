@@ -1,29 +1,22 @@
 Rails.application.routes.draw do
+  resources :exams do
+    collection do
+      get :index_student
+      get :index_faculty
+    end
+    member do
+      get :download_exam
+      get :download_invitation
+    end
+  end
   resources :proposals
   resources :faculties
   resources :students
   resources :announcements
-  resources :data_points do
-    get :forecast, on: :member
-  end
 
-  resources :imports do
-    member do
-      get :confirm
-      post ':confirm', action: 'do_confirm'
-    end
-  end
 
   resources :users
 
-  resource :report, only: [] do
-    collection do
-      get :main
-      get :capital_income
-      get :pop_car
-      get :price_level
-    end
-  end
 
   namespace :main do
     get 'login'
@@ -33,8 +26,8 @@ Rails.application.routes.draw do
     #home
     get 'home'
     get 'student'
-    get 'admin'
-    get 'lecturer'
+    get 'staff'
+    get 'faculty'
   end
 
   root 'main#home'

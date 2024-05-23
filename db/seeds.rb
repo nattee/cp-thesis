@@ -7,11 +7,29 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#
+
+def seed_student
+  Student.find_or_create_by(cuid: 6670123421,name: 'นายสมชาย ใจดี')
+  Student.find_or_create_by(cuid: 6379999921,name: 'น.ส.สมหญิง ขยันเรียน')
+end
+
+def seed_faculty
+  Faculty.find_or_create_by(name: 'อาจารย์ 1')
+  Faculty.find_or_create_by(name: 'อาจารย์ 2')
+  Faculty.find_or_create_by(name: 'อาจารย์ 3')
+  Faculty.find_or_create_by(name: 'อาจารย์ AA')
+  Faculty.find_or_create_by(name: 'อาจารย์ BB')
+  Faculty.find_or_create_by(name: 'อาจารย์ CC')
+
+end
 
 def seed_user
-  User.find_or_create_by(login: 'admin').update(name: 'admin', role: 1,password: 'admin')
-  User.find_or_create_by(login: 'student').update(name: 'student', role: 1,password: 'student')
-  User.find_or_create_by(login: 'faculty').update(name: 'faculty', role: 1,password: 'faculty')
+  User.find_or_create_by(login: 'student').update(name: 'student', role: 0,password: 'student', student: Student.first)
+  User.find_or_create_by(login: 'staff').update(name: 'staff', role: 1,password: 'staff')
+  User.find_or_create_by(login: 'faculty').update(name: 'faculty', role: 2,password: 'faculty', faculty: Faculty.first)
 end
 
 seed_user
+seed_student
+seed_faculty

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_23_094741) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_23_190134) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -47,7 +47,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_094741) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "exams", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "proposal_id", null: false
+    t.integer "status", limit: 1, default: 0
+    t.boolean "advisor_approved", default: false
+    t.datetime "exam_date"
+    t.string "place"
+    t.string "chair"
+    t.string "com1"
+    t.string "com2"
+    t.string "com3"
+    t.string "ex_com"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proposal_id"], name: "index_exams_on_proposal_id"
+  end
+
   create_table "faculties", charset: "utf8mb3", force: :cascade do |t|
+    t.string "title"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -68,6 +85,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_094741) do
     t.string "cuid"
     t.string "name"
     t.integer "program"
+    t.integer "start_term", default: 1
+    t.integer "start_year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,14 +97,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_094741) do
     t.string "email"
     t.string "password_digest"
     t.integer "role", limit: 1, default: 0
-    t.integer "admin", limit: 1, default: 0
+    t.boolean "admin", default: false
     t.datetime "last_login"
+    t.bigint "student_id"
+    t.bigint "faculty_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["faculty_id"], name: "index_users_on_faculty_id"
+    t.index ["student_id"], name: "index_users_on_student_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "exams", "proposals"
   add_foreign_key "proposals", "faculties", column: "advisor_id"
   add_foreign_key "proposals", "students"
 end

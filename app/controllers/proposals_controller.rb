@@ -13,6 +13,7 @@ class ProposalsController < ApplicationController
   # GET /proposals/new
   def new
     @proposal = Proposal.new
+    @proposal.student = Student.first
   end
 
   # GET /proposals/1/edit
@@ -65,6 +66,6 @@ class ProposalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def proposal_params
-      params.require(:proposal).permit(:student_id_id, :name_th, :name_en, :advisor_id)
+      params.require(:proposal).permit(:student_id, :name_th, :name_en, :advisor_id)
     end
 end

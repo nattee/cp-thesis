@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :current_user
   protected
 
   def current_user

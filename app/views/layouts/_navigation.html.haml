@@ -9,26 +9,44 @@
           .col.ps-0
             %hr.navbar-vertical-divider.mb-0
         -# item
-        %a.nav-link{href: '#'}
-          .d-flex.align-items-center
-            %span.nav-link-icon.mso
-              query_stats
-            %span.nav-link-text.ps-1 Result
-        %a.nav-link{href: '#'}
-          .d-flex.align-items-center
-            %span.nav-link-icon.mso
-              format_list_numbered
-            %span.nav-link-text.ps-1 Variables
-        %a.nav-link{href: '#'}
-          .d-flex.align-items-center
-            %span.nav-link-icon.mso
-              function
-            %span.nav-link-text.ps-1 Equations
-        %a.nav-link{href: '#'}
-          .d-flex.align-items-center
-            %span.nav-link-icon.mso
-              description
-            %span.nav-link-text.ps-1 Import Data
+        - if @current_user.role_student?
+          %a.nav-link{href: '#'}
+            .d-flex.align-items-center
+              %span.nav-link-icon.mso
+                query_stats
+              %span.nav-link-text.ps-1 นัดสอบ
+          %a.nav-link{href: '#'}
+            .d-flex.align-items-center
+              %span.nav-link-icon.mso
+                format_list_numbered
+              %span.nav-link-text.ps-1 ดูผลนัดสอบ
+          %a.nav-link{href: '#'}
+            .d-flex.align-items-center
+              %span.nav-link-icon.mso
+                function
+              %span.nav-link-text.ps-1 รายงานผล
+        - if @current_user.role_faculty?
+          %a.nav-link{href: '#'}
+            .d-flex.align-items-center
+              %span.nav-link-icon.mso
+                query_stats
+              %span.nav-link-text.ps-1 อนุมัติการสอบ
+          %a.nav-link{href: '#'}
+            .d-flex.align-items-center
+              %span.nav-link-icon.mso
+                format_list_numbered
+              %span.nav-link-text.ps-1 การสอบ
+        - if @current_user.role_staff?
+          %a.nav-link{href: '#'}
+            .d-flex.align-items-center
+              %span.nav-link-icon.mso
+                query_stats
+              %span.nav-link-text.ps-1 การนัดสอบ
+          %a.nav-link{href: '#'}
+            .d-flex.align-items-center
+              %span.nav-link-icon.mso
+                format_list_numbered
+              %span.nav-link-text.ps-1 ผลการสอบ
       -# category manage
       %li.nav-item
         -# label

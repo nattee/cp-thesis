@@ -1,0 +1,37 @@
+.card
+  .card-header.bg-body-tertiary
+    %h5 การนัดหมายการสอบ
+  .card-body
+    %table#main_table.table.table-hover{style: 'width: 100%'}
+      %thead
+        %tr.bg-200
+          %th ชื่อวิทยานิพนธ์
+          %th วันสอบ
+          %th อนุมัติการสอบ
+          %th
+          %th
+
+      %tbody
+        - @exams.each do |exam|
+          %tr
+            %td= exam.proposal.name_th
+            %td= exam.exam_date
+            %td= badge_display(exam.advisor_approved? ? '1' : '0')
+            %td= link_to 'เอกสารนัดสอบ'
+            %td= link_to 'จดหมายเชิญ'
+
+    %br
+
+    = link_to 'New exam', new_exam_path, class: 'btn btn-falcon-success'
+:javascript
+  window.addEventListener('DOMContentLoaded',function () {
+    $("#main_table").DataTable({
+      paging: false,
+      layout: {
+        topStart: 'info',
+        topEnd: 'search',
+        bottomStart: null,
+        bottomEnd: null,
+      },
+    });
+  } );

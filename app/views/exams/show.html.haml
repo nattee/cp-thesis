@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Proposal:
+  = @exam.proposal
+%p
+  %b Exam date:
+  = @exam.exam_date
+%p
+  %b Place:
+  = @exam.place
+%p
+  %b Chair:
+  = @exam.chair
+%p
+  %b Com1:
+  = @exam.com1
+%p
+  %b Com2:
+  = @exam.com2
+%p
+  %b Com3:
+  = @exam.com3
+%p
+  %b Ex com:
+  = @exam.ex_com
+
+= link_to 'Edit', edit_exam_path(@exam)
+\|
+= link_to 'Back', exams_path

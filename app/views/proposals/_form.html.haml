@@ -12,13 +12,13 @@
   .form-inputs
     .row
       .col-12
-        = f.association :student_id
+        = f.association :student, label: 'นิสิต'
       .col-12
-        = f.input :name_th
+        = f.input :name_th, label: 'ชื่อภาษาไทย'
       .col-12
-        = f.input :name_en
+        = f.input :name_en, label: 'ชื่อภาษาอังกฤษ'
       .col-12
-        = f.association :advisor
+        = f.association :advisor, label: 'อาจารย์ที่ปรึกษา'
   .row
     .col-md
     .col-auto.action
