@@ -1,0 +1,31 @@
+.card
+  .card-header.bg-body-tertiary
+    %h5 Faculties
+  .card-body
+    %table#main_table.table.table-hover{style: 'width: 100%'}
+      %thead
+        %tr.bg-200
+          %th name
+          %th
+
+      %tbody
+        - @faculties.each do |faculty|
+          %tr
+            %td= faculty.name
+            %td= link_to 'Edit', edit_faculty_path(faculty)
+
+    %br
+
+    = link_to 'New faculty', new_faculty_path, class: 'btn btn-falcon-success'
+:javascript
+  window.addEventListener('DOMContentLoaded',function () {
+    $("#main_table").DataTable({
+      paging: false,
+      layout: {
+        topStart: 'info',
+        topEnd: 'search',
+        bottomStart: null,
+        bottomEnd: null,
+      },
+    });
+  } );

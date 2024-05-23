@@ -1,0 +1,26 @@
+= simple_form_for @proposal do |f|
+  - if @proposal.errors.any?
+    #error_explanation.alert.alert-danger
+      .d-flex.align-items-center
+        .bg-danger.me-3.icon-item
+          %span.mso{style: 'color: white;font-size: 36px'}
+            error
+        %p.mb-0.flex-1= "#{pluralize(@proposal.errors.count, "error")} prohibited this proposal from being saved:"
+      %ul
+        - @proposal.errors.full_messages.each do |message|
+          %li= message
+  .form-inputs
+    .row
+      .col-12
+        = f.association :student_id
+      .col-12
+        = f.input :name_th
+      .col-12
+        = f.input :name_en
+      .col-12
+        = f.association :advisor
+  .row
+    .col-md
+    .col-auto.action
+      = f.submit 'Save', class: 'btn btn-falcon-primary'
+      %a.button.btn.btn-falcon-default{href: proposals_path} Back

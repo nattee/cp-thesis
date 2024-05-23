@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_23_083315) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_23_094741) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -47,6 +47,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_083315) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "faculties", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "proposals", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.string "name_th"
+    t.string "name_en"
+    t.bigint "advisor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advisor_id"], name: "index_proposals_on_advisor_id"
+    t.index ["student_id"], name: "index_proposals_on_student_id"
+  end
+
   create_table "students", charset: "utf8mb3", force: :cascade do |t|
     t.string "cuid"
     t.string "name"
@@ -69,4 +86,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_083315) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "proposals", "faculties", column: "advisor_id"
+  add_foreign_key "proposals", "students"
 end

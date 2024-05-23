@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Student:
+  = @proposal.student_id
+%p
+  %b Name th:
+  = @proposal.name_th
+%p
+  %b Name en:
+  = @proposal.name_en
+%p
+  %b Advisor:
+  = @proposal.advisor
+
+= link_to 'Edit', edit_proposal_path(@proposal)
+\|
+= link_to 'Back', proposals_path

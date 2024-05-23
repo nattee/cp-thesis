@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :proposals
+  resources :faculties
   resources :students
   resources :announcements
   resources :data_points do
