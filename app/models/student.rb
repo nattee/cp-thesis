@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   has_many :proposals
+  belongs_to :program
 
   def has_active_proposal
     proposals.count > 0

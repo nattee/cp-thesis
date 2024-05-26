@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :programs
   resources :exams do
     collection do
       get :index_student

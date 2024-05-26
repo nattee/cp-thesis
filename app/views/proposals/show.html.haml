@@ -1,4 +1,7 @@
 = render partial: 'proposals/proposal_card', locals: {proposal: @proposal}
 = link_to 'Edit', edit_proposal_path(@proposal)
 \|
-= link_to 'Back', proposals_path
+- if @current_user.role_student?
+  = link_to 'Back', main_student_path
+- else
+  = link_to 'Back', proposals_path

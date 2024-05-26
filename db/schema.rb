@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_23_190134) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_26_104508) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -70,6 +70,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_190134) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "programs", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.string "degree"
+    t.string "department"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "proposals", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "student_id", null: false
     t.string "name_th"
@@ -89,6 +97,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_190134) do
     t.integer "start_year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "program_id"
+    t.index ["program_id"], name: "index_students_on_program_id"
   end
 
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
@@ -112,4 +122,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_190134) do
   add_foreign_key "exams", "proposals"
   add_foreign_key "proposals", "faculties", column: "advisor_id"
   add_foreign_key "proposals", "students"
+  add_foreign_key "students", "programs"
 end

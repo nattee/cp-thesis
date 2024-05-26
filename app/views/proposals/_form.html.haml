@@ -12,7 +12,10 @@
   .form-inputs
     .row
       .col-12
-        = f.association :student, label: 'นิสิต', disabled: true
+        - if @current_user.role_student?
+          = f.association :student, label: 'นิสิต', disabled: true
+        - else
+          = f.association :student, label: 'นิสิต'
       .col-12
         = f.input :name_th, label: 'ชื่อวิทยานิพนธ์ (ภาษาไทย)'
       .col-12

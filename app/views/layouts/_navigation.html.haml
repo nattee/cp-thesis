@@ -8,33 +8,38 @@
           .col-auto.navbar-vertical-label Main
           .col.ps-0
             %hr.navbar-vertical-divider.mb-0
-        -# item
+        -# nav-link for student
         - if @current_user.role_student?
-          %a.nav-link{href: '#'}
+          %a.nav-link{href: act_proposal_student_path(@current_user.student)}
             .d-flex.align-items-center
               %span.nav-link-icon.mso
-                query_stats
+                book_2
+              %span.nav-link-text.ps-1 วิทยานิพนธ์
+          %a.nav-link{href: act_exam_student_path(@current_user.student)}
+            .d-flex.align-items-center
+              %span.nav-link-icon.mso
+                calendar_month
               %span.nav-link-text.ps-1 นัดสอบ
-          %a.nav-link{href: '#'}
+          %a.nav-link{href: exams_path}
             .d-flex.align-items-center
               %span.nav-link-icon.mso
-                format_list_numbered
+                event_available
               %span.nav-link-text.ps-1 ดูผลนัดสอบ
           %a.nav-link{href: '#'}
             .d-flex.align-items-center
               %span.nav-link-icon.mso
-                function
-              %span.nav-link-text.ps-1 รายงานผล
+                sports_score
+              %span.nav-link-text.ps-1 รายงานผลสอบ
         - if @current_user.role_faculty?
           %a.nav-link{href: '#'}
             .d-flex.align-items-center
               %span.nav-link-icon.mso
-                query_stats
+                order_approve
               %span.nav-link-text.ps-1 อนุมัติการสอบ
           %a.nav-link{href: '#'}
             .d-flex.align-items-center
               %span.nav-link-icon.mso
-                format_list_numbered
+                calendar_month
               %span.nav-link-text.ps-1 การสอบ
         - if @current_user.role_staff?
           %a.nav-link{href: '#'}

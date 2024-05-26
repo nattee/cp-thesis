@@ -21,7 +21,7 @@ class ProposalsController < ApplicationController
   # GET /proposals/new
   def new
     @proposal = Proposal.new
-    @proposal.student = Student.first
+    @proposal.student = current_user.student if current_user.role_student?
   end
 
   # GET /proposals/1/edit
@@ -31,10 +31,11 @@ class ProposalsController < ApplicationController
   # POST /proposals or /proposals.json
   def create
     @proposal = Proposal.new(proposal_params)
+    @proposal.student = current_user.student if current_user.role_student?
 
     respond_to do |format|
       if @proposal.save
-        format.html { redirect_to proposal_url(@proposal), notice: "Proposal was successfully created." }
+        format.html { redirect_to proposal_url(@proposal), notice: "แก้ไขวิทยานิพนธ์เรียบร้อย" }
         format.json { render :show, status: :created, location: @proposal }
       else
         format.html { render :new, status: :unprocessable_entity }

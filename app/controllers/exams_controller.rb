@@ -1,6 +1,6 @@
 class ExamsController < ApplicationController
   before_action :set_exam, only: %i[ show edit update destroy
-                                     download_exam approve update_approve
+                                     download_exam download_invitation approve update_approve
                                    ]
 
   # GET /exams or /exams.json
@@ -35,10 +35,23 @@ class ExamsController < ApplicationController
   # POST /exams or /exams.json
   def create
     @exam = Exam.new(exam_params)
+    if current_user.role_student?
+      @exam.proposal = current_user.student.proposals.last
+      target = root_path
+    else
+      target = exams_path
+    end
 
     respond_to do |format|
       if @exam.save
-        format.html { redirect_to exam_url(@exam), notice: "Exam was successfully created." }
+        format.html do
+          if current_user.role_student?
+            redirect_to root_path, notice: "สร้างการนัดหมายการสอบเรียบร้อย"
+          else
+            redirect_to exams_path, notice: "สร้างการนัดหมายการสอบเรียบร้อย"
+          end
+
+        end
         format.json { render :show, status: :created, location: @exam }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -72,8 +85,12 @@ class ExamsController < ApplicationController
 
   def download_exam
     filename = "exam.docx"
-    send_data @exam.gen_docx_exam.string, type: 'application/excel', disposition: 'inline', filename: filename
+    send_file @exam.gen_docx_exam, type: 'application/docx', disposition: 'inline', filename: filename
+  end
 
+  def download_invitation
+    filename = "invitation.docx"
+    send_file @exam.gen_docx_invitation(@exam.ex_com), type: 'application/docx', disposition: 'inline', filename: filename
   end
 
   def approve

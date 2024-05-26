@@ -23,5 +23,7 @@ module ErcGasPredict
     #
     config.time_zone = "Asia/Bangkok"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.hosts << "cp-thesis.cp.eng.chula.ac.th"
   end
 end

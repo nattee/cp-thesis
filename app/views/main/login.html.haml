@@ -1,5 +1,5 @@
 .row.min-vh-100.bg-100
-  .col-6.d-none.d-lg-block.position-relative
+  .col-md-4.d-none.d-lg-block.position-relative
     -# .bg-holder{:style => "background-image:url(/tmp.jpg);background-position: 50% 20%;"}
     %p{style: 'padding-top: 10%'}
     - @announcements.each do |ann|
@@ -9,17 +9,18 @@
         .card-body.bg-body-tertiary
           = ann.detail
     / /.bg-holder
-  .col-sm-10.col-md-6.px-sm-0.align-self-center.mx-auto.py-5
+  .col-sm-10.col-md-8.px-sm-0.align-self-center.mx-auto.py-5
     .row.justify-content-center.g-0
       .col-lg-9.col-xl-8.col-xxl-6
         .card
           .card-header.bg-circle-shape.bg-shape.text-center.p-2
-            %a.font-sans-serif.fw-bolder.fs-5.z-1.position-relative.link-light{"data-bs-theme" => "light", href: root_path} นัดหมายสอบโครงร่าง
+            %a.font-sans-serif.fw-bolder.fs-5.z-1.position-relative.link-light{"data-bs-theme" => "light", href: root_path} 
+              ระบบนัดสอบโครงร่างวิทยานิพนธ์
           .card-body.p-4
             = render 'shared/flash'
             .row.flex-between-center
               .col-auto
-                %h3 Login
+                %h3 เข้าสู่ระบบ
               .col-auto.fs-10.text-600
                 -#
                   %span.mb-0.fw-semi-bold New User?

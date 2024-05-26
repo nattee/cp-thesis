@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @program.name
+%p
+  %b Department:
+  = @program.department
+%p
+  %b Level:
+  = @program.level
+
+= link_to 'Edit', edit_program_path(@program)
+\|
+= link_to 'Back', programs_path

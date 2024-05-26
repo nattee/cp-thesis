@@ -18,9 +18,9 @@
             %td= exam.proposal.name_th
             %td= l(exam.exam_date, format: :short)
             %td= badge_display(exam.advisor_approved? ? '1' : '0')
-            %td= link_to 'เอกสารนัดสอบ'
+            %td= link_to 'เอกสารนัดสอบ', download_exam_exam_path(exam)
             - if exam.advisor_approved?
-              %td= link_to 'จดหมายเชิญ'
+              %td= link_to 'จดหมายเชิญ', download_invitation_exam_path(exam)
             - else
               %td
                 จดหมายเชิญ

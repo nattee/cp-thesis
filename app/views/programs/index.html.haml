@@ -1,0 +1,35 @@
+.card
+  .card-header.bg-body-tertiary
+    %h5 Programs
+  .card-body
+    %table#main_table.table.table-hover{style: 'width: 100%'}
+      %thead
+        %tr.bg-200
+          %th name
+          %th department
+          %th level
+          %th
+
+      %tbody
+        - @programs.each do |program|
+          %tr
+            %td= program.name
+            %td= program.department
+            %td= program.level
+            %td= link_to 'Edit', edit_program_path(program)
+
+    %br
+
+    = link_to 'New program', new_program_path, class: 'btn btn-falcon-success'
+:javascript
+  window.addEventListener('DOMContentLoaded',function () {
+    $("#main_table").DataTable({
+      paging: false,
+      layout: {
+        topStart: 'info',
+        topEnd: 'search',
+        bottomStart: null,
+        bottomEnd: null,
+      },
+    });
+  } );
