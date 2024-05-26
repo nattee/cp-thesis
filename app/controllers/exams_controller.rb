@@ -8,7 +8,7 @@ class ExamsController < ApplicationController
     if current_user.role_staff?
       @exams = Exam.all
     elsif current_user.role_faculty?
-      @exams = Exam.all
+      @exams = Exam.joins(:proposal).where('proposals.advisor': current_user.faculty)
       render :index_faculty
     else
       @exams = Exam.joins(:proposal).where('proposals.student': current_user.student)

@@ -1,21 +1,24 @@
 module ApplicationHelper
 
-  def time_display(time)
-    time.strftime('%d-%b-%y %H:%m')
-  end
-
-  def thai_date(date)
-
-    month = %i[
+   THAI_MONTH = %i[
     มกราคม กุมภาพันธ์
     มีนาคม เมษายน
     พฤษภาคม มิถุนายน
     กรกฎาคม สิงหาคม
     กันยายน ตุลาคม
     พฤศจิกายน ธันวาคม
-    ]
+  ]
 
-    "#{date.day} #{month[date.month+1]} #{date.year+543}"
+  def time_display(time)
+    time.strftime('%d-%b-%y %H:%m')
+  end
+
+  def thai_month(month)
+    THAI_MONTH[month-1]
+  end
+
+  def thai_date(date)
+    "#{date.day} #{thai_month(date.month)} #{date.year+543}"
   end
 
   def badge_display(value, mapping = {
