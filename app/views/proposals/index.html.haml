@@ -1,6 +1,12 @@
 .card
   .card-header.bg-body-tertiary
-    %h5 Proposals
+    - case @current_user.role
+    - when 'faculty'
+      %h5 วิทยานิพนธ์ในที่ปรึกษา
+    - when 'student'
+      %h5 วิทยานิพนธ์ของนิสิต
+    - else
+      %h5 วิทยานิพนธ์ทั้งหมด
   .card-body
     %table#main_table.table.table-hover{style: 'width: 100%'}
       %thead
@@ -22,7 +28,8 @@
 
     %br
 
-    = link_to 'New proposal', new_proposal_path, class: 'btn btn-falcon-success'
+    - if @current_user.role_staff?
+      = link_to 'New proposal', new_proposal_path, class: 'btn btn-falcon-success'
 :javascript
   window.addEventListener('DOMContentLoaded',function () {
     $("#main_table").DataTable({

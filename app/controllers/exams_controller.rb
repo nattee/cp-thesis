@@ -1,18 +1,19 @@
 class ExamsController < ApplicationController
-  before_action :set_exam, only: %i[ show edit update destroy download_exam ]
+  before_action :set_exam, only: %i[ show edit update destroy
+                                     download_exam approve update_approve
+                                   ]
 
   # GET /exams or /exams.json
   def index
-    @exams = Exam.all
-  end
-
-  def index_faculty
-    index
-  end
-
-  def index_student
-    @exams = Exam.last(1)
-
+    if current_user.role_staff?
+      @exams = Exam.all
+    elsif current_user.role_faculty?
+      @exams = Exam.all
+      render :index_faculty
+    else
+      @exams = Exam.joins(:proposal).where('proposals.student': current_user.student)
+      render :index_student
+    end
   end
 
   # GET /exams/1 or /exams/1.json
@@ -22,6 +23,9 @@ class ExamsController < ApplicationController
   # GET /exams/new
   def new
     @exam = Exam.new
+    if current_user.student
+      @exam.proposal = current_user.student.proposals.last
+    end
   end
 
   # GET /exams/1/edit
@@ -70,6 +74,18 @@ class ExamsController < ApplicationController
     filename = "exam.docx"
     send_data @exam.gen_docx_exam.string, type: 'application/excel', disposition: 'inline', filename: filename
 
+  end
+
+  def approve
+  end
+
+  def update_approve
+    @exam.update(advisor_approved: params[:approve])
+    if @exam.advisor_approved?
+      redirect_to exams_path, notice: "อนุมัติสอบโครงร่างของ #{@exam.proposal.student.name} เรียบร้อย"
+    else
+      redirect_to exams_path, notice: "ปฏิเสธการสอบโครงร่างของ #{@exam.proposal.student.name}"
+    end
   end
 
   private

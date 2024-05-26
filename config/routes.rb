@@ -7,11 +7,23 @@ Rails.application.routes.draw do
     member do
       get :download_exam
       get :download_invitation
+      get :approve
+      post :approve, action: 'update_approve'
     end
   end
-  resources :proposals
+  resources :proposals do
+    member do
+      get :download
+    end
+  end
   resources :faculties
-  resources :students
+
+  resources :students do
+    member do
+      get :act_proposal
+      get :act_exam
+    end
+  end
   resources :announcements
 
 

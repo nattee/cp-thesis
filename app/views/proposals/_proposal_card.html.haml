@@ -1,0 +1,25 @@
+-# require "proposal" local var
+.card.mb-2
+  .card-header
+    %h5 วิทยานิพนธ์
+  .card-body.bg-body-tertiary
+    .row
+      .col-12
+        .row
+          .col-md-3.fw-medium
+            นิสิต
+          .col
+            = proposal.student.name
+        .row
+          .col-3.fw-medium
+            ชื่อวิทยานิพนธ์ (ไทย)
+          .col
+            = proposal.name_th
+        .row
+          .col-3.fw-medium
+            ชื่อวิทยานิพนธ์ (อังกฤษ)
+          .col
+            = proposal.name_en
+  .card-footer
+    - if proposal.file.attached?
+      = link_to 'Download', download_proposal_path(proposal), class: 'btn btn-falcon-primary', target: '_blank';

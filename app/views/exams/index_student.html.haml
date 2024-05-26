@@ -2,6 +2,7 @@
   .card-header.bg-body-tertiary
     %h5 การนัดหมายการสอบ
   .card-body
+    = render 'shared/flash'
     %table#main_table.table.table-hover{style: 'width: 100%'}
       %thead
         %tr.bg-200
@@ -15,14 +16,17 @@
         - @exams.each do |exam|
           %tr
             %td= exam.proposal.name_th
-            %td= exam.exam_date
+            %td= l(exam.exam_date, format: :short)
             %td= badge_display(exam.advisor_approved? ? '1' : '0')
             %td= link_to 'เอกสารนัดสอบ'
-            %td= link_to 'จดหมายเชิญ'
+            - if exam.advisor_approved?
+              %td= link_to 'จดหมายเชิญ'
+            - else
+              %td
+                จดหมายเชิญ
+                (รอที่ปรึกษาอนุมัติ)
 
     %br
-
-    = link_to 'New exam', new_exam_path, class: 'btn btn-falcon-success'
 :javascript
   window.addEventListener('DOMContentLoaded',function () {
     $("#main_table").DataTable({

@@ -5,8 +5,12 @@
     .row.gx-3
       .col-xxl-4.col-md-6
         .hover-bg-200.py-x1.text-center.rounded-3.position-relative
+          -#
+            .icon-item.icon-item-xl.shadow-none.mx-auto.mt-x1.bg-primary-subtle
+              %span.nav-link-icon.mso.text-primary
+                query_stats
           .mb-2.mt-3
-            %a.stretched-link{href: '#'} อนุมัติการสอบ
+            %a.stretched-link{href: exams_path} อนุมัติการสอบ
           .w-75.mx-auto.text-600.mb-x1
             รายการขอนัดสอบของนิสิตในที่ปรึกษาทั้งหมดที่รอการอนุมัติ
       .col-xxl-4.col-md-6

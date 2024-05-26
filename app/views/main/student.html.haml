@@ -5,14 +5,24 @@
     .row.gx-3
       .col-xxl-4.col-md-6
         .hover-bg-200.py-x1.text-center.rounded-3.position-relative
+          -#
+            .icon-item.icon-item-xl.shadow-none.mx-auto.mt-x1.bg-primary-subtle
+              %span.nav-link-icon.mso.text-primary
+                query_stats
           .mb-2.mt-3
-            %a.stretched-link{href: '#'} นัดสอบ
+            %a.stretched-link{href: act_proposal_student_path(@current_user.student)} วิทยานิพนธ์
+          .w-75.mx-auto.text-600.mb-x1
+            กรอกข้อมูลเกี่ยวกับวิทยานิพนธ์
+      .col-xxl-4.col-md-6
+        .hover-bg-200.py-x1.text-center.rounded-3.position-relative
+          .mb-2.mt-3
+            %a.stretched-link{href: act_exam_student_path(@current_user.student)} นัดสอบ
           .w-75.mx-auto.text-600.mb-x1
             กรอกข้อมูลใบขอนัดสอบและส่งให้อาจารย์ที่ปรึกษายืนยันผ่านระบบ
       .col-xxl-4.col-md-6
         .hover-bg-200.py-x1.text-center.rounded-3.position-relative
           .mb-2.mt-3
-            %a.stretched-link{href: '#'} ดูผลนัดสอบ
+            %a.stretched-link{href: exams_path} ดูผลนัดสอบ
           .w-75.mx-auto.text-600.mb-x1
             ตรวจสอบการยืนยันผลการนัดสอบที่นี่
       .col-xxl-4.col-md-6

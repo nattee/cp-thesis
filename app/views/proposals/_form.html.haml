@@ -12,13 +12,15 @@
   .form-inputs
     .row
       .col-12
-        = f.association :student, label: 'นิสิต'
+        = f.association :student, label: 'นิสิต', disabled: true
       .col-12
-        = f.input :name_th, label: 'ชื่อภาษาไทย'
+        = f.input :name_th, label: 'ชื่อวิทยานิพนธ์ (ภาษาไทย)'
       .col-12
-        = f.input :name_en, label: 'ชื่อภาษาอังกฤษ'
+        = f.input :name_en, label: 'ชื่อวิทยานิพนธ์ (ภาษาอังกฤษ)'
       .col-12
         = f.association :advisor, label: 'อาจารย์ที่ปรึกษา'
+      .col-12
+        = f.input :file, label: 'แนบไฟล์โครงร่างวิทยานิพนธ์ (.pdf)', as: :file
   .row
     .col-md
     .col-auto.action

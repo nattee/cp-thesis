@@ -1,9 +1,17 @@
 class ProposalsController < ApplicationController
-  before_action :set_proposal, only: %i[ show edit update destroy ]
+  before_action :set_proposal, only: %i[ show edit update destroy
+                                         download
+                                       ]
 
   # GET /proposals or /proposals.json
   def index
-    @proposals = Proposal.all
+    if current_user.role_student?
+      @proposals = Proposal.where(student: current_user.student)
+    elsif current_user.role_faculty?
+      @proposals = Proposal.where(advisor: current_user.faculty)
+    else
+      @proposals = Proposal.all
+    end
   end
 
   # GET /proposals/1 or /proposals/1.json
@@ -58,6 +66,12 @@ class ProposalsController < ApplicationController
     end
   end
 
+  def download
+    filename = "โครงร่าง_#{@proposal.student.name}"
+    data = @proposal.file.download
+    send_data data, type: 'application/pdf',  disposition: 'inline', filename: filename
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_proposal
@@ -66,6 +80,6 @@ class ProposalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def proposal_params
-      params.require(:proposal).permit(:student_id, :name_th, :name_en, :advisor_id)
+      params.require(:proposal).permit(:student_id, :name_th, :name_en, :advisor_id, :file)
     end
 end

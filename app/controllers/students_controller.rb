@@ -1,5 +1,7 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: %i[ show edit update destroy ]
+  before_action :set_student, only: %i[ show edit update destroy
+                                        act_proposal act_exam
+                                      ]
 
   # GET /students or /students.json
   def index
@@ -45,6 +47,26 @@ class StudentsController < ApplicationController
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # main action
+  def act_proposal
+    if @student.has_active_proposal
+      redirect_to edit_proposal_path(@student.proposals.last)
+    else
+      redirect_to new_proposal_path
+    end
+  end
+
+  def act_exam
+    if @student.has_active_exam
+      redirect_to exams_path, notice: 'มีการนัดสอบแล้ว ตรวจสอบผลการนัดสอบจากรายการด้านล่าง'
+    elsif @student.has_active_proposal
+      redirect_to new_exam_path
+    else
+      redirect_to new_proposal_path
+    end
+
   end
 
   # DELETE /students/1 or /students/1.json
