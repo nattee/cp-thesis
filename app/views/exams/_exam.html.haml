@@ -1,0 +1,50 @@
+.card.mb-2
+  .card-header
+    %h5 การนัดสอบ
+  .card-body.bg-body-tertiary
+    .row
+      .col-12
+        .row
+          .col-md-3.fw-medium
+            วัน เวลา
+          .col
+            = l(exam.exam_date,format: :short)
+        .row
+          .col-3.fw-medium
+            สถานที่
+          .col
+            = exam.place
+        .row
+          .col-3.fw-medium
+            ประธานการสอบ
+          .col
+            = exam.chair
+        .row
+          .col-3.fw-medium
+            อาจารย์ที่ปรึกษา
+          .col
+            = exam.proposal.advisor.name
+        - unless exam.com3.blank?
+          .row
+            .col-3.fw-medium
+              กรรมการ
+            .col
+              = exam.com1
+        - unless exam.com3.blank?
+          .row
+            .col-3.fw-medium
+              กรรมการ
+            .col
+              = exam.com2
+        - unless exam.com3.blank?
+          .row
+            .col-3.fw-medium
+              กรรมการ
+            .col
+              = exam.com3
+        - unless exam.ex_com.blank?
+          .row
+            .col-3.fw-medium
+              กรรมการภายนอก
+            .col
+              = exam.ex_com

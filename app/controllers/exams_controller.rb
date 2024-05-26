@@ -16,6 +16,12 @@ class ExamsController < ApplicationController
     end
   end
 
+  def committee
+    name = current_user.faculty.name
+    @exams = Exam.joins(:proposal).where('com1 = ? OR com2 = ? or com3 = ? or chair = ?',name,name,name,name)
+    render :index_committee
+  end
+
   # GET /exams/1 or /exams/1.json
   def show
   end
@@ -30,6 +36,9 @@ class ExamsController < ApplicationController
 
   # GET /exams/1/edit
   def edit
+    if @exam.advisor_approved? && current_user.role_staff? == false
+      redirect_to exams_path, alert: 'การนัดสอบนี้ได้รับการอนุมัติแล้ว ไม่สามารถแก้ไขได้'
+    end
   end
 
   # POST /exams or /exams.json

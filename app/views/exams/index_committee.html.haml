@@ -1,35 +1,35 @@
 .card
   .card-header.bg-body-tertiary
-    %h5 Exams
+    %h5 การนัดหมายสอบ (สำหรับกรรมการ)
   .card-body
-    = render partial: 'shared/flash'
+    = render 'shared/flash'
     %table#main_table.table.table-hover{style: 'width: 100%'}
       %thead
         %tr.bg-200
           %th ชื่อวิทยานิพนธ์
-          %th ชื่อนิสิต
           %th วันสอบ
-          %th
+          %th นิสิต
           %th
 
       %tbody
         - @exams.each do |exam|
           %tr
             %td= exam.proposal.name_th
+            %td= l(exam.exam_date, format: :short)
             %td= exam.proposal.student.name
-            %td= l(exam.exam_date,format: :short)
-            %td= link_to 'ดูรายละเอียด', exam_path(exam)
-            %td= link_to 'แก้ไข', edit_exam_path(exam)
+            %td= button_to 'ดูรายละเอียด', exam_path(exam), method: :get, class: 'btn btn-falcon-primary btn-sm'
 
     %br
-
+  .card-footer
     = link_to 'New exam', new_exam_path, class: 'btn btn-falcon-success'
 :javascript
   window.addEventListener('DOMContentLoaded',function () {
     $("#main_table").DataTable({
       paging: false,
       layout: {
-        topStart: 'info',
+        topStart: {
+          info: true,
+        },
         topEnd: 'search',
         bottomStart: null,
         bottomEnd: null,

@@ -31,18 +31,18 @@
                 sports_score
               %span.nav-link-text.ps-1 รายงานผลสอบ
         - if @current_user.role_faculty?
-          %a.nav-link{href: '#'}
+          %a.nav-link{href: exams_path}
             .d-flex.align-items-center
               %span.nav-link-icon.mso
                 order_approve
               %span.nav-link-text.ps-1 อนุมัติการสอบ
-          %a.nav-link{href: '#'}
+          %a.nav-link{href: committee_exams_path}
             .d-flex.align-items-center
               %span.nav-link-icon.mso
                 calendar_month
               %span.nav-link-text.ps-1 การสอบ
         - if @current_user.role_staff?
-          %a.nav-link{href: '#'}
+          %a.nav-link{href: exams_path}
             .d-flex.align-items-center
               %span.nav-link-icon.mso
                 query_stats

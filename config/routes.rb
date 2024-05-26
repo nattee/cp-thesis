@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   resources :programs
   resources :exams do
     collection do
-      get :index_student
-      get :index_faculty
+      get :committee
     end
     member do
       get :download_exam
